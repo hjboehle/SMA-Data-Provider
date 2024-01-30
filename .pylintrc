@@ -1,0 +1,7 @@
+[MAIN]
+#ignore-path = /path/to/ignore
+
+[MESSAGES CONTROL]
+disable = E0401, # ignore import errors, in this project false positives
+          C0413  # ignore sort import convention, in pytest files other sorting is needed
+ 
