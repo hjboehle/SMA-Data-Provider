@@ -12,9 +12,22 @@ def test_parse_arguments_with_valid_arguments():
     """
     test of the function parse_arguments with valid arguments
     """
-    args = parse_arguments(["--ip_address", "192.168.1.1", "--tcp_port", "502"])
+    args = parse_arguments(
+        ["--ip_address", "192.168.1.1", "--tcp_port", "502", "--log_level", "ERROR"]
+    )
     assert args.ip_address == "192.168.1.1"
     assert args.tcp_port == 502
+    assert args.log_level == "ERROR"
+
+
+def test_parse_arguments_with_valid_arguments_short_form():
+    """
+    test of the function parse_arguments with valid arguments
+    """
+    args = parse_arguments(["-i", "192.168.1.1", "-t", "502", "-l", "ERROR"])
+    assert args.ip_address == "192.168.1.1"
+    assert args.tcp_port == 502
+    assert args.log_level == "ERROR"
 
 
 def test_parse_arguments_with_required_valid_arguments():
@@ -23,6 +36,26 @@ def test_parse_arguments_with_required_valid_arguments():
     """
     args = parse_arguments(["--ip_address", "192.168.1.1"])
     assert args.ip_address == "192.168.1.1"
+
+
+def test_parse_arguments_with_required_valid_arguments_with_valid_choice():
+    """
+    test of the function parse_arguments with required valid arguments with valid choice
+    """
+    args = parse_arguments(["--ip_address", "192.168.1.1", "--log_level", "DEBUG"])
+    assert args.log_level == "DEBUG"
+
+
+def test_parse_arguments_with_required_valid_arguments_with_invalid_choice():
+    """
+    test of the function parse_arguments with required valid arguments with invalid choice
+    """
+    try:
+        parse_arguments(["--ip_address", "192.168.1.1", "--log_level", "BUG"])
+    except SystemExit:
+        pass
+    else:
+        assert False, "Expected SystemExit, but no exception was raised"
 
 
 def test_parse_arguments_without_required_arguments():
@@ -61,9 +94,9 @@ def test_parse_arguments_with_an_invalid_argument():
         assert False, "Expected SystemExit, but no exception was raised"
 
 
-def test_parse_arguments_with_a_wrong_value_type():
+def test_parse_arguments_with_a_wrong_value_type_str():
     """
-    test of the function parse_arguments with a wrong value type
+    test of the function parse_arguments with a wrong value type string
     """
     try:
         parse_arguments(["--tcp_port", "fivehundredandtwo"])
