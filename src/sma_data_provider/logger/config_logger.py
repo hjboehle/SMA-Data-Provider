@@ -4,7 +4,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 
 
-def configure_logger(log_file_path='app.log', log_level=logging.INFO):
+def configure_logger(log_file_path="app.log", log_level=logging.INFO):
     """
     Configures the logger with a flexible configuration.
 
@@ -17,7 +17,7 @@ def configure_logger(log_file_path='app.log', log_level=logging.INFO):
     """
     # Create logger
     logger = logging.getLogger()
-    logger.setLevel(log_level)
+    logger.setLevel(getattr(logging, log_level))
 
     # Create formatter
     formatter = logging.Formatter(
@@ -39,7 +39,7 @@ def configure_logger(log_file_path='app.log', log_level=logging.INFO):
 
     return logger
 
+
 if __name__ == "__main__":
-    # Example usage when running the script directly
-    configured_logger = configure_logger()
-    configured_logger.info("This is an example log message.")
+    configured_logger = configure_logger(log_level="INFO")
+    configured_logger.info("note: this file '%s' can not run directly", __file__)

@@ -2,6 +2,7 @@
 
 import argparse
 import logging
+from logger.config_logger import configure_logger
 
 
 logger = logging.getLogger(__name__)
@@ -49,3 +50,8 @@ def parse_arguments(args=None) -> argparse.Namespace:
     )
     logger.info("success: arguments %s parsed and returned", parser.parse_args(args))
     return parser.parse_args(args)
+
+
+if __name__ == "__main__":
+    configure_logger(log_level="INFO")
+    logger.info("note: this file '%s' can not run directly", __file__)
