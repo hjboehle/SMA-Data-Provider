@@ -6,7 +6,7 @@ The SMA device data collector is currently under development and can currently r
 
 * Session Id assigned by the device.
 
-## Compatibility list
+## Compatibility List
 
 Data can currently be obtained from the following SMA devices:
 
