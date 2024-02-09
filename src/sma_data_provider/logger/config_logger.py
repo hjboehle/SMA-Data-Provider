@@ -4,7 +4,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 
 
-def configure_logger(log_file_path="app.log", log_level=logging.INFO):
+def configure_logger(log_file_path="app.log", log_level="INFO"):
     """
     Configures the logger with a flexible configuration.
 

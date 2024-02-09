@@ -3,6 +3,7 @@
 import logging
 from arguments.arguments import parse_arguments
 from logger.config_logger import configure_logger
+from api.login import get_session_id
 
 def main() -> None:
     """
@@ -22,9 +23,7 @@ def main() -> None:
     args = parse_arguments()
     if args.log_level:
         configure_logger(log_level=args.log_level)
-    ip_address = args.ip_address
-    tcp_port = args.tcp_port
-    print(f"Hello developer, the IP address is {ip_address} and the TCP port is {tcp_port}")
+    print(f"\nsession is: {get_session_id(args.ip_address)}\n")
 
 
 if __name__ == "__main__":

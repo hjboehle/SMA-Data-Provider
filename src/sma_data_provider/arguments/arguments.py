@@ -28,13 +28,6 @@ def parse_arguments(args=None) -> argparse.Namespace:
         help="The IP address of the MODBUS server"
     )
     parser.add_argument(
-        "--tcp_port",
-        "-t",
-        type=int,
-        required=False,
-        help="The TCP port of the MODBUS server"
-    )
-    parser.add_argument(
         "--log_level",
         "-l",
         type=str,
