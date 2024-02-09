@@ -29,6 +29,7 @@ The following requirements must be met in order to operate this software:
 4. create the environment variable `PYTHONPATH=directory_of_your_choice/src/sma_data_provider`
 5. create the environment variable `SMA_DEVICE_RIGHT=usr`
 6. create the environment variable `SMA_DEVICE_PASSWORD=<password of the user>`
-7. call the Python script with `python src/sma_data_provider/main.py --ip_address <IP address of your SMA device>`
+7. install required Python packages with `pip install src/sma_data_provider`
+8. call the Python script with `python src/sma_data_provider/main.py --ip_address <IP address of your SMA device>`
 
 Users who work with `git` can of course also clone the repository to a directory of their choice.
