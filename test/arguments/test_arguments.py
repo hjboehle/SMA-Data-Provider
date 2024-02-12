@@ -4,7 +4,7 @@ import sys
 import os
 import pytest
 
-sys.path.append(f"{os.getcwd()}/src/sma_data_provider")
+sys.path.append(f"{os.getcwd()}/src/sma_data_collector")
 from arguments.arguments import parse_arguments
 
 
@@ -13,10 +13,9 @@ def test_parse_arguments_with_valid_arguments():
     test of the function parse_arguments with valid arguments
     """
     args = parse_arguments(
-        ["--ip_address", "192.168.1.1", "--tcp_port", "502", "--log_level", "ERROR"]
+        ["--ip_address", "192.168.1.1", "--log_level", "ERROR"]
     )
     assert args.ip_address == "192.168.1.1"
-    assert args.tcp_port == 502
     assert args.log_level == "ERROR"
 
 
@@ -24,9 +23,8 @@ def test_parse_arguments_with_valid_arguments_short_form():
     """
     test of the function parse_arguments with valid arguments
     """
-    args = parse_arguments(["-i", "192.168.1.1", "-t", "502", "-l", "ERROR"])
+    args = parse_arguments(["-i", "192.168.1.1", "-l", "ERROR"])
     assert args.ip_address == "192.168.1.1"
-    assert args.tcp_port == 502
     assert args.log_level == "ERROR"
 
 
@@ -63,7 +61,7 @@ def test_parse_arguments_without_required_arguments():
     test of the function parse_arguments without required arguments
     """
     try:
-        parse_arguments(["--tcp_port", "502"])
+        parse_arguments(["--log_level", "DEBUG"])
     except SystemExit:
         pass
     else:
@@ -94,18 +92,6 @@ def test_parse_arguments_with_an_invalid_argument():
         assert False, "Expected SystemExit, but no exception was raised"
 
 
-def test_parse_arguments_with_a_wrong_value_type_str():
-    """
-    test of the function parse_arguments with a wrong value type string
-    """
-    try:
-        parse_arguments(["--tcp_port", "fivehundredandtwo"])
-    except SystemExit:
-        pass
-    else:
-        assert False, "Expected SystemExit, but no exception was raised"
-
-
 def test_parse_arguments_help_text(capfd):
     """
     test of the function parse_arguments helptext
@@ -114,6 +100,5 @@ def test_parse_arguments_help_text(capfd):
         parse_arguments(["--help"])
     out, _ = capfd.readouterr()
     assert "The IP address of the MODBUS server" in out
-    assert "The TCP port of the MODBUS server" in out
     assert err.type == SystemExit
     assert err.value.code == 0

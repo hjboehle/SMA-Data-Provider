@@ -42,6 +42,8 @@ def send_request(
     Returns:
         requests.Response: The response object.
     """
+    if not request_attributes["data"]:
+        request_attributes["data"] = None
     request_attributes["default_headers"] = {
         "User-Agent": "SMA device data collector",
         "Accept": "application/json, text/plain, */*",

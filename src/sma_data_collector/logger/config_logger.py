@@ -27,13 +27,13 @@ def configure_logger(log_file_path="app.log", log_level="INFO"):
 
     # Create console handler and set level
     console_handler = logging.StreamHandler()
-    console_handler.setLevel(log_level)
+    console_handler.setLevel(getattr(logging, log_level))
     console_handler.setFormatter(formatter)
     logger.addHandler(console_handler)
 
     # Create file handler and set level (optional)
     file_handler = RotatingFileHandler(log_file_path, maxBytes=10*1024*1024, backupCount=5)
-    file_handler.setLevel(log_level)
+    file_handler.setLevel(getattr(logging, log_level))
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 

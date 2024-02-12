@@ -5,7 +5,7 @@ import sys
 import os
 from datetime import datetime
 
-sys.path.append(f"{os.getcwd()}/src/sma_data_provider")
+sys.path.append(f"{os.getcwd()}/src/sma_data_collector")
 from logger.config_logger import configure_logger
 
 
@@ -24,7 +24,7 @@ def test_configure_logger(caplog):
         AssertionError: If any of the test conditions fail.
 
     """
-    configure_logger(log_level=logging.DEBUG)
+    configure_logger(log_level="DEBUG")
 
     # Check whether the logger has been configured correctly
     logger = logging.getLogger()
