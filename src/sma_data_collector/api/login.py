@@ -47,6 +47,11 @@ def get_session_id(ip_address: str) -> str:
                 "failed: The session id could not be extracted from the response: %s",
                 err
             )
+        except KeyError as err:
+            logger.error(
+                "failed: The session id could not be extracted from the response: %s",
+                err
+            )
     else:
         logger.error(
             "failed: The session id could not be received due to an unsuccessful request"

@@ -13,8 +13,13 @@ setup(
     long_description="SMA devices shows data in a WebGUI from the connected " \
         "photovoltaic system. This data is read out and output as JSON data records.",
     packages=["sma_data_collector"],
-    install_requires=["modbus"],
-    tests_require=["pytest"],
+    install_requires=[
+        "requests",
+    ],
+    tests_require=[
+        "pytest",
+        "requests_mock"
+    ],
     entry_points={
         "console_scripts": [
             "sma_data_collector = sma_data_collector.cli:main"

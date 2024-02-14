@@ -87,7 +87,7 @@ def send_request(
         return _get_error_response(500, "to many redirections")
     except requests.exceptions.RequestException as err:
         logger.error("failed: The request failed with the following error: %s", err)
-        return _get_error_response(500, "request error")
+        return _get_error_response(500, "request exception")
     logger.info("success: Response received")
     return response
 
